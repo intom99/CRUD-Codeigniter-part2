@@ -31,7 +31,7 @@ class Mahasiswa extends CI_Controller
         if ($foto = '') {
         } else {
             $config['upload_path'] = './assets/foto';
-            $config['allowed_types'] = 'jpeg|jpg|png|gif';
+            $config['allowed_types'] = 'jpeg|jpg|png';
 
             $this->load->library('upload', $config);
             if (!$this->upload->do_upload('foto')) {
@@ -88,6 +88,20 @@ class Mahasiswa extends CI_Controller
         $email = $this->input->post('email');
         $no_telp = $this->input->post('no_telp');
 
+        $foto = $_FILES['foto'];
+        if ($foto) {
+        } else {
+            $config['upload_path'] = './assets/foto';
+            $config['allowed_types'] = 'jpeg|jpg|png';
+
+            $this->load->library('upload', $config);
+            if ($this->upload->do_upload('foto')) {
+                $foto = $this->upload->data('file_name');
+                $this->db->set('foto', $foto);
+            } else {
+                redirect('administrator/mahasiswa/index');
+            }
+        }
 
         $data = array(
             'nama' => $nama,
@@ -153,8 +167,8 @@ class Mahasiswa extends CI_Controller
 
     //     $object = new PHPExcel();
 
-    //     $object->getProperties()->setCreator("Intom Arsu");
-    //     $object->getProperties()->setLastModiedBy("Iin A R");
+    //     $object->getProperties()->setCreator("Who?");
+    //     $object->getProperties()->setLastModiedBy("Who?");
     //     $object->getProperties()->setTitle("Data Mahasiswa");
 
     //     $object->setActiveSheetIndex(0);
