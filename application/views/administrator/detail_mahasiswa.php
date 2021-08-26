@@ -35,12 +35,13 @@
                             <td><?php echo $detail->no_telp ?></td>
                         </tr>
                         <tr>
-                            <td>
+                            <td colspan="2">
                                 <img src="<?php echo base_url(); ?>assets/foto/<?php echo $detail->foto; ?>" width="90" height="110">
                             </td>
+
                         </tr>
                     </table>
-                    <a href="<?php echo base_url() . 'administrator/mahasiswa/index' ?>" class="btn btn-primary">Kembali</a>
+                    <a href="<?php echo base_url() . 'administrator/mahasiswa/index' ?>" class="btn btn-secondary"><i class="fas fa-chevron-left"></i> Kembali</a>
                 </div>
             </div>
         </section>
